@@ -1,227 +1,260 @@
 # CORAXL
 
-### Enterprise Agent Observability Brain
+<div align="center">
 
-**The first system that tells organizations whether their AI agents are creating value or silently creating risk — using Coral SQL, local telemetry, and AI-powered operational analysis.**
+# Enterprise AI Agent Governance & Observability Platform
 
----
+### Trust Your AI Agents Before They Reach Production
 
-# Problem
+Built with Coral SQL • Gemini • Next.js • Flask
 
-AI agents are rapidly being deployed across engineering, support, finance, and operations teams.
+[Live Demo](https://YOUR_VERCEL_URL.vercel.app) • [Demo Video](https://YOUR_VIDEO_URL) • [Documentation](#architecture)
 
-Most organizations can answer:
-
-* Is the agent running?
-* Did the task complete?
-
-Very few can answer:
-
-* Is the agent becoming less accurate?
-* Is the agent creating operational risk?
-* Which agent is degrading?
-* What business impact does that create?
-
-Without observability, enterprises discover failures only after customer complaints, incidents, compliance violations, or financial loss.
+</div>
 
 ---
 
-# Solution
+## The Problem
 
-CORAXL provides a unified observability layer for enterprise AI agents.
+AI agents are rapidly being deployed across engineering, operations, support, finance, and internal enterprise workflows.
 
-Using Coral SQL, telemetry from multiple systems can be queried through a single interface.
+Yet most organizations cannot answer a fundamental question:
 
-CORAXL continuously evaluates:
+> **Are our AI agents actually helping us—or silently creating risk?**
 
-* Agent Health
-* Risk Scores
-* Drift Detection
-* Operational Performance
-* Executive-Level Recommendations
+Current AI deployments suffer from:
 
-The result is a single operational view of AI agent behavior before failures become expensive.
+- Zero visibility into agent effectiveness
+- No mechanism for drift detection
+- Lack of explainability
+- Poor governance controls
+- No measurable ROI framework
+- Black-box decision making
 
----
-
-# Architecture
-
-GitHub
-
-↓
-
-Slack
-
-↓
-
-Linear
-
-↓
-
-Agent Logs
-
-↓
-
-Coral SQL
-
-↓
-
-CORAXL Analysis Engine
-
-↓
-
-Gemini Executive Insights
-
-↓
-
-Dashboard
+As enterprises move toward autonomous systems, trust becomes the biggest bottleneck.
 
 ---
 
-# Key Features
+## Introducing CORAXL
 
-## Agent Health Score
+CORAXL is an Enterprise AI Governance Platform that transforms raw agent telemetry into explainable operational intelligence.
 
-Measures overall operational health across the agent fleet.
-
----
-
-## Drift Detection
-
-Detects agents whose behavior is degrading over time.
-
-Example:
-
-* Accuracy decline
-* Increased risk profile
-* Operational anomalies
+Instead of treating AI agents as black boxes, CORAXL continuously evaluates agent behavior, detects risk, identifies drift, and generates governance recommendations through a transparent Coral SQL layer.
 
 ---
 
-## Executive Insights
+## What CORAXL Does
 
-Gemini converts technical telemetry into leadership-friendly summaries.
+### Agent Health Monitoring
 
-Outputs:
+Continuously evaluates operational health across AI agents.
 
-* Health Score
-* Drift Status
-* CFO Summary
-* Recommended Actions
+### Drift Detection
 
----
+Detects behavioral degradation before it becomes a production incident.
 
-## Coral SQL Layer
+### Governance Intelligence
 
-Cross-source analytics powered by Coral.
+Generates executive-level insights from operational telemetry.
 
-No ETL.
+### Risk Assessment
 
-No warehouse setup.
+Identifies unhealthy or potentially dangerous agent behavior.
 
-No cloud data exposure.
+### Explainable SQL Layer
 
----
+Every recommendation can be traced back to transparent Coral SQL queries.
 
-# Example Coral Query
+### Local-First Processing
 
-```sql
-SELECT
-    agent_name,
-    COUNT(*) AS total_actions,
-    AVG(risk_score) AS avg_risk,
-    SUM(
-        CASE
-            WHEN status='BLOCKED'
-            THEN 1
-            ELSE 0
-        END
-    ) AS blocked_count
-FROM agent_logs.suggestions
-GROUP BY agent_name
-ORDER BY avg_risk DESC;
-```
-
----
-
-# Example Output
-
-```json
-{
-  "health_score": 12,
-  "drift_detected": true,
-  "drift_agent": "sys-sentinel-v4",
-  "recommendation": "Isolate access tokens and execute compliance rollback."
-}
-```
+No sensitive telemetry needs to leave your environment.
 
 ---
 
 # Why CORAXL Matters
 
-Most observability platforms monitor infrastructure.
+Most organizations monitor infrastructure.
 
-CORAXL monitors decision-making.
+Most organizations monitor applications.
 
-As enterprises adopt autonomous agents, understanding whether agents are helping or harming becomes a critical business requirement.
+Very few organizations monitor AI agents.
 
-CORAXL makes that visible.
+CORAXL introduces a missing layer:
 
----
+### AI Governance
 
-# Responsible AI
+A system that answers:
 
-CORAXL never performs autonomous production actions.
-
-Safeguards:
-
-* Human approval required
-* No automatic merges
-* No automatic deployments
-* Transparent recommendations
-* Explainable risk scoring
+- Which agents should we trust?
+- Which agents are degrading?
+- Which agents are creating value?
+- Which agents require intervention?
 
 ---
 
-# Tech Stack
+# Architecture
 
-Frontend
-
-* Next.js
-* TypeScript
-* TailwindCSS
-* Framer Motion
-
-Backend
-
-* Python
-* Flask
-
-AI
-
-* Gemini
-
-Data Layer
-
-* Coral SQL
-
----
-
-# Local Setup
-
-```bash
-git clone <repo>
-
-cd coraxl
-
-cd backend
-
-pip install -r requirements.txt
-
-python3 server.py
+```text
+┌──────────────────────────────┐
+│         CORAXL UI            │
+│        Next.js Frontend      │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│       Flask API Layer        │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│      Coral SQL Engine        │
+└──────────────┬───────────────┘
+               │
+      ┌────────┼────────┐
+      ▼        ▼        ▼
+ GitHub     Slack    Linear
+      ▼
+ Agent Logs
+               │
+               ▼
+┌──────────────────────────────┐
+│    Governance Intelligence   │
+│        Gemini Analysis       │
+└──────────────┬───────────────┘
+               │
+               ▼
+       Risk Insights
+       Drift Detection
+       Health Scores
+       Recommendations
 ```
 
-Frontend
+---
+
+# Coral SQL Governance Layer
+
+CORAXL uses Coral as the intelligence layer powering governance decisions.
+
+## Query 1 — Accuracy Cross Join
+
+Measures whether agent recommendations produce successful business outcomes.
+
+```sql
+SELECT
+  agent_name,
+  suggested_action
+FROM agent_logs
+```
+
+Purpose:
+
+- Correlate agent actions
+- Measure effectiveness
+- Validate outcomes
+
+---
+
+## Query 2 — Drift Detection
+
+Tracks performance degradation over time.
+
+Purpose:
+
+- Detect behavioral drift
+- Prevent production failures
+- Trigger governance alerts
+
+---
+
+## Query 3 — ROI Analysis
+
+Measures operational value generated by AI agents.
+
+Purpose:
+
+- Quantify business impact
+- Measure productivity gains
+- Support executive reporting
+
+---
+
+# Features
+
+| Feature | Status |
+|----------|----------|
+| Agent Health Monitoring | ✅ |
+| Governance Dashboard | ✅ |
+| Drift Detection | ✅ |
+| Risk Scoring | ✅ |
+| Explainable SQL Layer | ✅ |
+| Gemini Insights | ✅ |
+| Local Processing | ✅ |
+| Multi-Agent Support | ✅ |
+
+---
+
+# Dashboard Views
+
+## HELIOS
+
+Governance command center.
+
+Execute audits and launch fleet-wide analysis.
+
+---
+
+## Dashboard
+
+Real-time operational intelligence.
+
+Displays:
+
+- Health Scores
+- Governance Insights
+- Risk Metrics
+- Executive Recommendations
+
+---
+
+## Agents
+
+Individual AI agent profiles.
+
+Displays:
+
+- Agent Risk
+- Agent Health
+- Operational Activity
+
+---
+
+## SQL Layer
+
+Transparent Coral SQL governance logic.
+
+Every recommendation is traceable.
+
+---
+
+## Console
+
+Live governance telemetry stream.
+
+---
+
+# Getting Started
+
+## Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/coraxl.git
+
+cd coraxl
+```
+
+---
+
+# Frontend Setup
 
 ```bash
 npm install
@@ -229,7 +262,7 @@ npm install
 npm run dev
 ```
 
-Open:
+Frontend:
 
 ```text
 http://localhost:3000
@@ -237,10 +270,156 @@ http://localhost:3000
 
 ---
 
+# Backend Setup
+
+```bash
+cd backend
+
+pip install flask
+pip install flask-cors
+pip install requests
+
+python3 server.py
+```
+
+Backend:
+
+```text
+http://127.0.0.1:5000
+```
+
+Health Endpoint:
+
+```text
+http://127.0.0.1:5000/api/health
+```
+
+---
+
+# Environment Variables
+
+Create a `.env` file:
+
+```env
+GEMINI_KEY=YOUR_GEMINI_API_KEY
+```
+
+---
+
+# Deployment
+
+## Frontend
+
+Deploy to:
+
+- Vercel
+- Netlify
+
+Example:
+
+```bash
+vercel
+```
+
+Live URL:
+
+```text
+https://YOUR_VERCEL_URL.vercel.app
+```
+
+---
+
+## Backend
+
+Deploy to:
+
+- Railway
+- Render
+- Google Cloud Run
+
+Update frontend API URL after deployment.
+
+---
+
+# Scalability
+
+CORAXL scales horizontally because every new enterprise system becomes another Coral connector rather than another custom integration.
+
+GitHub today.
+
+Jira tomorrow.
+
+ServiceNow next week.
+
+The governance layer remains unchanged.
+
+---
+
+# Feasibility
+
+CORAXL works on top of existing enterprise telemetry.
+
+Organizations do not need to redesign workflows or retrain teams.
+
+Deployment is immediate.
+
+Adoption friction is minimal.
+
+---
+
+# Future Roadmap
+
+### Governance OS for AI Agents
+
+Upcoming capabilities:
+
+- Predictive Drift Detection
+- Real-Time Agent Monitoring
+- Autonomous Governance Workflows
+- Compliance Automation
+- Multi-Tenant Enterprise Support
+- Enterprise Connector Marketplace
+
+---
+
+# Responsible AI
+
+CORAXL is designed around human oversight.
+
+- Human approval remains mandatory
+- No autonomous production execution
+- Transparent governance logic
+- Explainable recommendations
+- Full auditability through Coral SQL
+
+---
+
 # Vision
 
-The future will not be managed by humans alone.
+Today CORAXL helps organizations understand what their AI agents are doing.
 
-It will be managed by fleets of AI agents.
+Tomorrow it will help them understand what their AI agents are likely to do next.
 
-CORAXL exists to ensure those agents remain observable, accountable, and aligned with business outcomes.
+And whether they should trust them.
+
+---
+
+## Built For
+
+### Pirates of the Coral-Bean Hackathon
+
+Track: Enterprise Agent
+
+Built with Coral SQL.
+
+Designed for the future of AI governance.
+
+---
+
+<div align="center">
+
+### CORAXL
+
+Governance for Autonomous Agents
+
+</div>
